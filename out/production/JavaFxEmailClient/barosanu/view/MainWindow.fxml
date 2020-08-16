@@ -20,9 +20,9 @@
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false"  text="Options" />
-            </items>
+               <items>
+                   <MenuItem mnemonicParsing="false" onAction="#optionsAction" text="Options" />
+               </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>

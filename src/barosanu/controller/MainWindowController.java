@@ -10,7 +10,13 @@ import javafx.scene.web.WebView;
 /**
  * Created by "Bartosz Chodyla" on 2020-08-14.
  */
+
 public class MainWindowController extends BaseController {
+
+
+    public MainWindowController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
+        super(emailManager, viewFactory, fxmlName);
+    }
 
     @FXML
     private TreeView<?> emailsTreeView;
@@ -21,12 +27,9 @@ public class MainWindowController extends BaseController {
     @FXML
     private WebView emailWebView;
 
-    public MainWindowController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
-        super(emailManager, viewFactory, fxmlName);
-    }
-
     @FXML
     void optionsAction() {
-
+        viewFactory.showOptionsWindow();
     }
+
 }

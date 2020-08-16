@@ -1,6 +1,6 @@
 /**
  * Created by "Bartosz Chodyla" on 2020-08-13.
- */module JavaFxFirstProgram {
+ */module JavaFxEmailClient {
      requires javafx.fxml;
      requires javafx.controls;
      requires javafx.graphics;
