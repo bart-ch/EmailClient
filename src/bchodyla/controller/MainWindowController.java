@@ -1,6 +1,7 @@
 package bchodyla.controller;
 
 import bchodyla.EmailManager;
+import bchodyla.controller.services.MessageRendererService;
 import bchodyla.model.EmailMessage;
 import bchodyla.model.EmailTreeItem;
 import bchodyla.model.SizeInteger;
@@ -55,6 +56,8 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private TableColumn<EmailMessage, Date> dateCol;
 
+    private MessageRendererService messageRendererService;
+
     @FXML
     void optionsAction() {
         viewFactory.showOptionsWindow();
@@ -71,6 +74,22 @@ public class MainWindowController extends BaseController implements Initializabl
         setUpEmailsTableView();
         setUpFolderSelection();
         setUpBoldRows();
+        setUpMessageRenderService();
+        setUpMessageSelection();
+    }
+
+    private void setUpMessageSelection() {
+        emailsTableView.setOnMouseClicked(e -> {
+            EmailMessage emailMessage = emailsTableView.getSelectionModel().getSelectedItem();
+            if(emailMessage != null) {
+                messageRendererService.setEmailMessage(emailMessage);
+                messageRendererService.restart();
+            }
+        });
+    }
+
+    private void setUpMessageRenderService() {
+        messageRendererService = new MessageRendererService(emailWebView.getEngine());
     }
 
     private void setUpBoldRows() {
