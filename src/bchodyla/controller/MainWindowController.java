@@ -3,14 +3,18 @@ package bchodyla.controller;
 import bchodyla.EmailManager;
 import bchodyla.model.EmailMessage;
 import bchodyla.model.EmailTreeItem;
+import bchodyla.model.SizeInteger;
 import bchodyla.view.ViewFactory;
+import javafx.css.Size;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.web.WebView;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.Date;
@@ -46,7 +50,7 @@ public class MainWindowController extends BaseController implements Initializabl
     private TableColumn<EmailMessage, String> recipientCol;
 
     @FXML
-    private TableColumn<EmailMessage, Integer> sizeCol;
+    private TableColumn<EmailMessage, SizeInteger> sizeCol;
 
     @FXML
     private TableColumn<EmailMessage, Date> dateCol;
@@ -66,6 +70,28 @@ public class MainWindowController extends BaseController implements Initializabl
         setUpEmailsTreeView();
         setUpEmailsTableView();
         setUpFolderSelection();
+        setUpBoldRows();
+    }
+
+    private void setUpBoldRows() {
+        emailsTableView.setRowFactory(new Callback<TableView<EmailMessage>, TableRow<EmailMessage>>() {
+            @Override
+            public TableRow<EmailMessage> call(TableView<EmailMessage> param) {
+                return new TableRow<EmailMessage>(){
+                    @Override
+                    protected void updateItem(EmailMessage item, boolean empty){
+                        super.updateItem(item, empty);
+                        if(item != null) {
+                            if(item.isRead()){
+                                setStyle("");
+                            } else {
+                                setStyle("-fx-font-weight: bold");
+                            }
+                        }
+                    }
+                };
+            }
+        });
     }
 
     private void setUpFolderSelection() {
@@ -81,8 +107,8 @@ public class MainWindowController extends BaseController implements Initializabl
         senderCol.setCellValueFactory(new PropertyValueFactory<EmailMessage,String>("sender"));
         subjectCol.setCellValueFactory(new PropertyValueFactory<EmailMessage,String>("subject"));
         recipientCol.setCellValueFactory(new PropertyValueFactory<EmailMessage,String>("recipient"));
-        sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessage,Integer>("size"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<EmailMessage,Date>("date"));
+        sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, SizeInteger>("size"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, Date>("date"));
     }
 
     private void setUpEmailsTreeView() {

@@ -15,34 +15,35 @@ public class EmailMessage {
     private SimpleStringProperty subject;
     private SimpleStringProperty sender;
     private SimpleStringProperty recipient;
-    private SimpleIntegerProperty size;
+    private SimpleObjectProperty<SizeInteger> size;
     private SimpleObjectProperty<Date> date;
     private boolean isRead;
     private Message message;
 
-    public EmailMessage(String subject, String sender, String recipient, int size, Date date, boolean isRead,
-                        Message message) {
+    public EmailMessage(String subject, String sender, String recipient, int size, Date date, boolean isRead, Message message){
         this.subject = new SimpleStringProperty(subject);
         this.sender = new SimpleStringProperty(sender);
         this.recipient = new SimpleStringProperty(recipient);
-        this.size = new SimpleIntegerProperty(size);
+        this.size = new SimpleObjectProperty<SizeInteger>(new SizeInteger(size));
         this.date = new SimpleObjectProperty<Date>(date);
         this.isRead = isRead;
         this.message = message;
-
     }
 
-    public String getSubject() {
+    public String getSubject(){
         return this.subject.get();
     }
-    public String getSender() {
+    public  String getSender(){
         return this.sender.get();
     }
-    public String getRecipient() {
+    public String getRecipient(){
         return this.recipient.get();
     }
-    public Integer getSize() {
+    public SizeInteger getSize(){
         return this.size.get();
+    }
+    public Date getDate(){
+        return this.date.get();
     }
 
     public boolean isRead() {
@@ -51,8 +52,7 @@ public class EmailMessage {
     public void setRead(boolean read) {
         isRead = read;
     }
-
-    public Message getMessage() {
+    public Message getMessage(){
         return this.message;
     }
 }
