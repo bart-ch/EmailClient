@@ -11,4 +11,5 @@
      opens bchodyla;
      opens bchodyla.view;
      opens bchodyla.controller;
+     opens bchodyla.model;
 }
