@@ -8,7 +8,8 @@
      requires java.mail;
      requires activation;
 
-     opens barosanu;
-     opens barosanu.view;
-     opens barosanu.controller;
+     opens bchodyla;
+     opens bchodyla.view;
+     opens bchodyla.controller;
+     opens bchodyla.model;
 }
