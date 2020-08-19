@@ -1,10 +1,7 @@
 package bchodyla.view;
 
 import bchodyla.EmailManager;
-import bchodyla.controller.BaseController;
-import bchodyla.controller.LoginWindowController;
-import bchodyla.controller.MainWindowController;
-import bchodyla.controller.OptionsWindowController;
+import bchodyla.controller.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -54,14 +51,12 @@ public class ViewFactory {
 
     public void showLoginWindow() {
         System.out.println("Show login window called");
-
         BaseController controller = new LoginWindowController(emailManager, this, "LoginWindow.fxml");
         initializeStage(controller);
     }
 
     public void showMainWindow() {
         System.out.println("Main window called");
-
         BaseController controller = new MainWindowController(emailManager, this, "MainWindow.fxml");
         initializeStage(controller);
         mainViewInitialized = true;
@@ -69,8 +64,13 @@ public class ViewFactory {
 
     public void showOptionsWindow() {
         System.out.println("Options window called");
-
         BaseController controller = new OptionsWindowController(emailManager,this, "OptionsWindow.fxml");
+        initializeStage(controller);
+    }
+
+    public void showComposeMessageWindow() {
+        System.out.println("Compose message window called");
+        BaseController controller = new ComposeMessageController(emailManager,this, "ComposeMessageWindow.fxml");
         initializeStage(controller);
     }
 
