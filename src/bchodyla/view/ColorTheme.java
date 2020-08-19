@@ -8,7 +8,7 @@ public enum ColorTheme {
     DEFAULT,
     DARK;
 
-    public static String getCssPatch(ColorTheme colorTheme) {
+    public static String getCssPath(ColorTheme colorTheme) {
         switch(colorTheme) {
             case LIGHT:
                 return "css/themeLight.css";
