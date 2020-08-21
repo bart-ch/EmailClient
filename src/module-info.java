@@ -7,6 +7,7 @@
      requires javafx.web;
      requires java.mail;
      requires activation;
+     requires java.desktop;
 
      opens bchodyla;
      opens bchodyla.view;
